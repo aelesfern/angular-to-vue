@@ -1,0 +1,18 @@
+/* Add application styles & imports to this file! */
+body {
+  width: 400px;
+}
+ul,
+form {
+  display: flex;
+  width: 100%;
+  list-style: none;
+}
+ul > *,
+form > * {
+  margin-left: 20px;
+}
+ul *:nth-child(2),
+form *:nth-child(2) {
+  flex: 1;
+}
