@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html class="bg-black flex justify-center m-20">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css"
+		integrity="sha512-vswe+cgvic/XBoF1OcM/TeJ2FW0OofqAVdCZiEYkd6dwGXthvkSFWOoGGJgS2CW70VK5dQM5Oh+7ne47s74VTg==" crossorigin="anonymous" />
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+	<style>
+		html {
+			color: #E6E6E6;
+			font-family: 'Roboto', sans-serif;
+			font-size: 16px;
+		}
+
+		section {
+			display: inline-flex;
+			flex-wrap: wrap;
+			margin-top: 70px;
+		}
+
+		section>* {
+			flex: 1 1 0%;
+			margin: 0 24px;
+		}
+		section>*:not(header) {
+			max-width: 45%;
+		}
+
+		section header {
+			flex: 1 1 100%;
+			margin-bottom: 20px;
+			font-size: 1.875rem;
+			font-weight: 700;
+			display: flex;
+			justify-content: center;
+		}
+
+		section header h2 {
+			display: inline;
+			background-color: rgb(80, 80, 80);
+			padding: 10px 20px;
+			min-width: 200px;
+			text-align: center;
+		}
+
+		.angular-bg {
+			background: transparent linear-gradient(190deg, #0C98D6 0%, #036B9A 100%) 0% 0% no-repeat padding-box;
+			opacity: 0.9;
+			flex: 1 1 0%;
+		}
+
+		.vue-bg {
+			background-color: #c9c9c9;
+			flex: 1 1 0%;
+		}
+
+		.vue-text {
+			color: #017EB6;
+		}
+
+		li {
+			margin: 0 0 5px 0;
+		}
+		code[class*=language-] {
+			font-size: 0.8rem;
+		}
+		pre[class*=language-] {
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 class="text-5xl font-bold">Angular Vs Vue</h1>
+	<div class="m-0 max-w-screen-lg relative">
+		<div class="absolute flex top-0 left-0 bottom-0 right-0" style="z-index: -1">
+			<div class="angular-bg rounded-tl-3xl"></div>
+			<div class="vue-bg rounded-tr-3xl"></div>
+		</div>
+		<article class="flex flex-col">
+			<section class="justify-around">
+				<div class="flex flex-col items-center justify-between" style="max-width: 130px; height: 150px;">
+					<img src="./assets/angular-icon-1.svg">
+					<span class="font-black text-4xl">Angular</span>
+				</div>
+				<div class="flex flex-col items-center justify-between" style="max-width: 130px; height: 150px;">
+					<img src="./assets/vue-js-1.svg">
+					<span class="font-black text-4xl vue-text">Vue</span>
+				</div>
+			</section>
+			<section>
+				<header><h2>Introducción</h2></header>
+				<div>
+					<ul>
+						<li>Ofrece una solución completa para la mayoría de las necesidades de una aplicación web</li>
+						<li>En su estructura y documentación presta mucha importancia a la estandarización</li>
+						<li>Está totalmente integrado con Typescript y Rxjs</li>
+						<li>Suele utilizarse Ngrx como librería para implementar arquitectura Redux</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<ul>
+						<li>Su core se centra en la capa de presentación para que sea mas sencillo trabajar con el</li>
+						<li>El uso de Typescript es opcional</li>
+						<li>No esta integrado con Rxjs, aunque ofrece una librería para su integración (poco mantenida)</li>
+						<li>Ofrece un mejor rendimiento (datos no actualizados)</li>
+						<li>Suele utilizarse Vuex como librería para implementar arquitectura Redux</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<header><h2>CLI</h2></header>
+				<div></div>
+				<div class="vue-text"><ul>
+					<li>Esta pensado para ser extendido con plugins <code class="lang-md">(@vue/cli-plugin-xxx)</code> y no tocar webpack</li>
+					<li>No tiene comandos para crear nuevas piezas, como por ejemplo componentes</li>
+				</ul></div>
+			</section>
+			<section>
+				<header><h2>Instancia</h2></header>
+				<div>
+					<pre><code class="lang-js">import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));</code></pre>
+					<ul>
+						<li>Por defecto sólo puede haber una instancia Angular en ejecución</li>
+						<li>El módulo usado para la instancia alberga la configuración global de la aplicación, pero ciertas partes pueden compartirse facilmente usando módulos intermedios</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<pre><code class="lang-js">var app = new Vue({
+	el: '#app',
+	data: {
+		message: 'Hola Vue!'
+	},
+	components: {
+		'app-button': AppButton
+	}
+})</code></pre>
+					<ul>
+					<li>Cada componente es una instancia Vue y puede ser usado como una aplicación</li>
+					<li>Los componentes compartidos (globales) son configurados aqui</li>
+					<li>Al ser un componente Vue tiene los ciclos de vida normales de un componente.</li>
+				</ul></div>
+			</section>
+			<section>
+				<header><h2>Módulos</h2></header>
+				<div>
+					<pre><code class="lang-js">import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+@NgModule({
+	declarations: [
+	AppComponent
+	],
+	imports: [
+	BrowserModule,
+	AppRoutingModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
+})
+export class AppModule { }</code></pre>
+					<ul>
+						<li>Se utiliza para configurar el inyector de dependencias y el compilador</li>
+						<li>Ayuda a jerarquizar y encapsular el código</li>
+					</ul>
+					
+				</div>
+				<div class="vue-text"><ul>
+					<li>No existe el concepto de módulo</li>
+					<li>No existe el inyector de dependencias</li>
+					<li>El código se jerarquiza en la instancia Vue, componentes globales y la propia jerarquia de componentes</li>
+				</ul></div>
+			</section>
+			<section>
+				<header><h2>Componentes</h2></header>
+				<div>
+					<pre><code class="lang-js">import { Component, EventEmitter, OnChanges, Output, SimpleChanges } from '@angular/core';
+
+@Component({
+	selector: 'app-user-list', // Selector para uso en HTML
+	templateUrl: './user-list.component.html',
+	styleUrls: ['./user-list.component.scss'],
+})
+export class AppUserList implements OnChanges {
+	users: any[] = [];
+	@Output() userRemoved: EventEmitter<any> = new EventEmitter(); // Salida de datos
+	lastViewedUser: any; // Datos propios
+
+	userQuantity() { // Datos calculados
+	return this.users.length;
+	}
+	ngOnChanges(changes: SimpleChanges) { // Reacción a cambios
+	changes.users && console.log(changes.users.currentValue.length);
+	}
+	removeUser(user: any) { // Método
+	this.userRemoved.emit(user);
+	}
+}</code></pre>
+					<ul>
+						<li>Se centran en la lógica relacionada con la representación visual</li>
+						<li>Puede tener su CSS y HTML en archivos únicos o incluidos en el archivo .component</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<pre><code class="lang-js">// Componente .js
+export default {
+	name: 'AppUserList', // Selector para uso en HTML
+	components: { // Registro de componentes locales
+	AppUser
+	},
+	template: `&lt;div&gt;...`, // Vista
+	data: function() { // Datos propios
+	return {
+		lastViewedUser: undefined
+	}
+	},
+	props: { // Parámetros de entrada
+	users: {
+		type: array,
+		required: true,
+		validator: users =&gt; users.length &gt; 0
+	}
+	},
+	computed: { // Datos calculados
+	userQuantity: () =&gt; this.users.length
+	},
+	watch: { // Reacción a cambios
+	users: (oldValue, newValue) =&gt; console.log(newValue.length)
+	},
+	methods: { // Métodos
+	removeUser: (user) =&gt; this.$emit('userRemoved', user) // Datos de salida
+	}
+}
+
+// Componente .vue en multiples archivos
+&lt;template src="..."&gt;&lt;/template&gt; // Vista
+&lt;script&gt;
+export default {
+	name: 'AppUserList', // Selector para uso en HTML
+	...
+}
+&lt;/script&gt;
+&lt;style scoped src="..."&gt;&lt;/style&gt; // Estilos</code></pre>
+					<ul>
+						<li>La aplicación se divide en componentes, sin usar necesariamente otras estructuras</li>
+						<li>Puede condificarse en un archivo .js con el HTML incluido y sin CSS (pobre soporte de IDEs)</li>
+						<li>Puede codificarse en un archivo .vue que incluye CSS y HTML en etiquetas style y template, exportables a ficheros independientes</li>
+						<li>El HTML requiere que la primera etiqueta no tenga hermanos</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<header><h2>Componentes - Proyección de contenido/Transclusión</h2></header>
+				<div>
+					<pre><code class="lang-html">&lt;!--Card Component --&gt;
+&lt;div class="header"&gt;{{title}}&lt;/div&gt;
+&lt;div class="content"&gt;
+	&lt;ng-content select="slot-content"&gt;&lt;/ng-content&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;
+	&lt;ng-content select="slot-footer"&gt;&lt;/ng-content&gt;
+&lt;/div&gt;
+
+&lt;!-- Uso de los slots --&gt;
+&lt;card-component title="La noticia del día"&gt;
+	&lt;p slot-content&gt;¿Con o sin cebolla? La polémica que interesa a nadie.&lt;/p&gt;
+	&lt;p slot-footer&gt;Artículo de El Comedista&lt;/p&gt;
+&lt;/card-component&gt;</code></pre>
+				</div>
+				<div class="vue-text">
+					<pre><code class="lang-html">&lt;!--Card Component --&gt;
+&lt;div&gt;
+	&lt;div class="header"&gt;{{title}}&lt;/div&gt;
+	&lt;div class="content"&gt;
+	&lt;slot name="content"&gt;&lt;/slot&gt;
+	&lt;/div&gt;
+	&lt;div class="footer"&gt;
+	&lt;slot name="footer"&gt;&lt;/slot&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Uso de los slots --&gt;
+&lt;card-component title="La noticia del día"&gt;
+	&lt;p slot="content"&gt;¿Con o sin cebolla? La polémica que interesa a nadie.&lt;/p&gt;
+	&lt;p slot="footer"&gt;Artículo de El Comedista&lt;/p&gt;
+&lt;/card-component&gt;</code></pre>
+				</div>
+			</section>
+			<section>
+				<header><h2>Componentes - Directivas</h2></header>
+				<div>
+					<pre><code class="lang-html">&lt;ul *ngIf="users; else noUsers"&gt;
+&lt;app-user *ngFor="let user of users; let i=index" [user]="user"&gt;&lt;/app-user&gt;
+&lt;ng-template #noUsers&gt;&lt;p&gt;No hay usuarios&lt;/p&gt;&lt;/ng-template&gt;
+&lt;/ul&gt;
+&lt;input [(ngModel)]="newUserName"&gt;</code></pre>
+				</div>
+				<div class="vue-text">
+					<pre><code class="lang-html">&lt;div&gt;
+&lt;ul v-If="users"&gt;
+	&lt;app-user v-for="(user, index) in users" :key="user.id" :user="user"&gt;{{index}}&lt;/app-user&gt;
+&lt;/ul&gt;
+&lt;p v-else&gt;No hay usuarios&lt;/p&gt;
+&lt;input [(ngModel)]="newUserName"&gt;
+&lt;/div&gt;</code></pre>
+				</div>
+			</section>
+			<section>
+				<header><h2>Servicios</h2></header>
+				<div>
+					<pre><code class="lang-js">import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+
+@Injectable({providedIn: 'root'})
+export class UserService {
+	private users: any[] = [];
+
+	constructor(private httpService: HttpClient) { }
+
+	getUsers() {
+		return this.httpService.get(url).pipe(
+			first(),
+			tap(users => this.users = users)
+		);
+	}
+}</code></pre>
+					<ul>
+						<li>Pensados para proveeder lógica específica a una funcionalidad no relacionada directamente con la representación visual</li>
+						<li>Estan dentro del sistema de inyección de dependencias, lo que permite crear código modular organizando jerarquicamente</li>
+						<li>Puesto que su lógica no debe ser específica a una vista por defecto son Singletons compartidos por la aplicación</li>
+						<li>Pueden crearse multiples instancias del mismo servicio para casos de uso poco habituales</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<pre><code class="lang-js">let users = [];
+
+export default {
+	getUsers() {
+		return fetch(url).then(newUsers => {
+			users = newUsers;
+			return users;
+		});
+	}
+}</code></pre>
+					<ul>
+						<li>No existe una pieza definida como servicio</li>
+						<li>Usando VanillaJS puede crearse un análogo a los servicios singleton</li>
+						<li>Vue ofrece como alternativa para crear código reutilizable por múltiples componentes los Mixins</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<header><h2>Mixins de Vue</h2></header>
+				<div>
+				</div>
+				<div class="vue-text">
+					<pre><code class="lang-js">// Mixin
+var myMixin = {
+	created: () => this.hello(),
+	methods: {
+		hello: () => console.log('hola desde el mixin!')
+	}
+}
+
+// Componente que usa el mixin
+var Component = Vue.extend({
+	mixins: [myMixin]
+})
+
+var component = new Component() // => "hola desde el mixin!"</code></pre>
+					<ul>
+						<li>Son utilizados para abstraer una lógica de un componente y hacerla re-utilizable</li>
+						<li>Un mixin es una configuración de componente, parcial o no</li>
+						<li>Al usar un mixin, un componente integra su configuración como propia</li>
+						<li>Un componente puede utilizar múltiples mixins</li>
+						<li>Un mixin puede a su vez utilizar otros mixins.</li>
+						<li>Pueden registrarse mixins de forma global. Todos los componentes tendrán esé código, lo usen o no</li>
+						<li>Recomendación: utilizar con moderación, su uso puede dificultar la comprensión de una base de código de gran tamaño.</li>
+						<li>Recomendación: al diseñarlos sigue siempre el principio de responsabilidad única.</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<header><h2>Directivas</h2></header>
+				<div>
+					<pre><code class="lang-js">import { Directive, ElementRef, TemplateRef, ViewContainerRef } from "@angular/core";
+
+@Directive({ selector: '[encebollado]'})
+export class EncebolladoDirective {
+	constructor(private elementRef: ElementRef){}
+	
+	encebollado() {
+	this.elementRef.nativeElement.innerHTML = `<div>${this.elementRef.nativeElement.innerHTML} con cebolla</div>`;
+	}
+}</code></pre>
+					<ul>
+						<li>Permiten añadir comportamientos nuevos a componentes y etiquetas html</li>
+						<li><code class="lang-md">@angular/core</code> ofrece un set de directivas que cubren las necesidades más habituales (ngFor, ngIf, etc...)</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<pre><code class="lang-js">Vue.directive('encebollado', { // Registra una directiva global llamada v-encebollado
+	inserted: function(el) {
+		el.nativeElement.innerHTML = `<div>${el.nativeElement.innerHTML} con cebolla</div>`;
+	}
+});</code></pre>
+					<ul>
+						<li>Son muy parecidas a las de Angular, aunque no hacen diferencia entre las de atributo y las estructurales</li>
+						<li>Pueden asociarse a ciertos eventos del componente o etiqueta usados</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<header><h2>Formularios</h2></header>
+				<div>
+					<pre><code class="lang-js">import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
+@Component({
+	selector: 'app-user-edit',
+	template: `
+	&lt;form [formGroup]="userForm"&gt;
+	&lt;label&gt;
+	First Name:
+	&lt;input type="text" formControlName="firstName"&gt;
+	&lt;/label&gt;
+	&lt;label&gt;
+	Last Name:
+	&lt;input type="text" formControlName="lastName"&gt;
+	&lt;/label&gt;
+&lt;/form&gt;
+	`
+})
+export class UserEditComponent {
+	userForm = new FormGroup({
+	firstName: new FormControl(''),
+	lastName: new FormControl(''),
+	});
+}</code></pre>
+					<ul>
+						<li>Tiene dos soluciones para realizar formularios según su complejidad (reactivos o por plantilla)</li>
+						<li>Crear inputs personalizados para su uso en formularios reactivos requiere implementar una interfaz relativamente compleja</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<pre><code class="lang-js">&lt;template&gt;
+	&lt;form&gt;
+		&lt;label&gt;
+			First Name:
+			&lt;input type="text" v-model="firstName"&gt;
+		&lt;/label&gt;
+		&lt;label&gt;
+			Last Name:
+			&lt;input type="text" v-model="lastName"&gt;
+		&lt;/label&gt;
+	&lt;/form&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+	name: 'user-edit-component',
+	data: function() {
+		return {
+			firstName: '',
+			lastName: ''
+		}
+	}
+}
+&lt;/script&gt;</code></pre>
+					<ul>
+						<li>Se limita a ofrecer una directiva para ofrecer vinculación doble de datos</li>
+						<li>Ofrece modificadores para las tareas más habituales</li>
+						<li>Crear inputs personalizados para su uso con esta directiva requiere el uso de dos propiedades habituales de los componentes</li>
+						<li>Existen varias librerías consolidadas que dan soporte a funcionalidades para formularios mas avanzadas</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<header><h2>Routing</h2></header>
+				<div>
+					<ul>
+						<li>La configuración del routing puede dividirse en módulos</li>
+						<li>Pueden configurarse Guards asociados a rutas para controlar el acceso a las mismas</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<ul>
+						<li>Ofrece una librería cuyo uso es similar a <code class="lang-md">@angular/routing</code>, para la que existe una documentación detallada</li>
+						<li>La configuración del routing se aglutina en un único archivo</li>
+						<li>Los Guards pueden definirse a nivel de ruta, y también a nivel de componente</li>
+						<li>Puede separarse código en diferentes archivos para carga vaga usando imports en la configuración del enrutado</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<header><h2>HttpClient</h2></header>
+				<div>
+					<ul>
+						<li>Ayuda a tipar las respuestas, gestionar los errores, interceptar las llamadas y facilitar el testeo</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<ul>
+						<li>No proporciona una interfaz para hacer peticiones http</li>
+						<li>Se sugiere el uso de la librería axios, para la que existe documentacion de ejemplo</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<header><h2>Testing</h2></header>
+				<div>
+					<ul>
+						<li>Angular CLI pre-configura el entorno para el uso de Karma + Jasmine para Unit testing</li>
+						<li>Angular CLI pre-configura el entorno para el uso de Protractor para E2E testing</li>
+						<li>La creación de piezas nuevas con el Cli genera automaticamente scripts de testeo</li>
+					</ul>
+				</div>
+				<div class="vue-text">
+					<ul>
+						<li>Vue CLI permite elegir como entorno de unit testing Mocha + Chai o Jest</li>
+						<li>Vue CLI permite elegir como entorno de E2E testing Cypress, Nightwatch y WebdriverIO</li>
+						<li>Las principales librerías de herramientas para testeo son @testing-library/vue y @vue/test-utils</li>
+						<li>Se recomienda utilizas Jest para introducirse al testing en Vue</li>
+						<li>Existe una documentación específica para testing no-oficial</li>
+					</ul>
+				</div>
+			</section>
+		</article>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"
+		integrity="sha512-YBk7HhgDZvBxmtOfUdvX0z8IH2d10Hp3aEygaMNhtF8fSOvBZ16D/1bXZTJV6ndk/L/DlXxYStP8jrF77v2MIg==" crossorigin="anonymous"></script>
+</body>
+
+
+</html>
